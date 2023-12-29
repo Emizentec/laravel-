@@ -5,5 +5,12 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - /var/lib/jenkins/workspace/laravel2/lara
+      - /var/lib/jenkins/workspace/laravel # Adjust this volume mapping if needed
+    ports:
+      - "9000:9000" # Expose port 9000 for PHP-FPM, adjust as necessary
+    networks:
+      - laravel_network # Create a network for communication between services
 
+networks:
+  laravel_network: # Define a custom network for communication between services
+    driver: bridge
